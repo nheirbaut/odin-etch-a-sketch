@@ -10,6 +10,13 @@ function setGridSize() {
     createGrid(gridSize);
 }
 
+function randomRGBValue() {
+    return Math.floor(Math.random() * 256);
+}
+
+function createRandomColor() {
+    return `rgb(${randomRGBValue()}, ${randomRGBValue()}, ${randomRGBValue()})`;
+}
 
 function createGrid(squaresPerRow) {
     const gridContainer = document.getElementById('grid-container');
@@ -28,7 +35,7 @@ function createGrid(squaresPerRow) {
         square.style.height = `${squareSize}px`;
 
         square.addEventListener('mouseover', e => {
-            square.style.backgroundColor = 'black';
+            square.style.backgroundColor = createRandomColor();
         });
 
         gridContainer.appendChild(square);
