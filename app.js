@@ -15,7 +15,11 @@ function randomRGBValue() {
 }
 
 function createRandomColor() {
-    return `rgb(${randomRGBValue()}, ${randomRGBValue()}, ${randomRGBValue()})`;
+    return {
+        r: randomRGBValue(),
+        g: randomRGBValue(),
+        b: randomRGBValue(),
+    };
 }
 
 function createGrid(squaresPerRow) {
@@ -34,8 +38,14 @@ function createGrid(squaresPerRow) {
         square.style.width = `${squareSize}px`;
         square.style.height = `${squareSize}px`;
 
-        square.addEventListener('mouseover', e => {
-            square.style.backgroundColor = createRandomColor();
+        let opacity = 0;
+        const randomColor = createRandomColor();
+
+        square.addEventListener('mouseover', () => {
+            if (opacity < 1) {
+                opacity = Math.min(opacity + 0.1, 1);
+                square.style.backgroundColor = `rgba(${randomColor.r}, ${randomColor.g}, ${randomColor.b}, ${opacity})`;
+            }
         });
 
         gridContainer.appendChild(square);
