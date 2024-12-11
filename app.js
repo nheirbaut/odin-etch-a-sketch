@@ -12,6 +12,10 @@ function createGrid(squaresPerRow) {
         square.style.width = `${squareSize}px`;
         square.style.height = `${squareSize}px`;
 
+        square.addEventListener('mouseover', e => {
+            square.style.backgroundColor = 'black';
+        });
+
         gridContainer.appendChild(square);
     }
 }
